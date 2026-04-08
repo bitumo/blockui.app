@@ -1,0 +1,57 @@
+---
+---
+
+<section class="border-t border-gray-100 bg-white px-6 py-24 lg:px-8">
+  <div class="mx-auto max-w-3xl">
+
+    <div class="mb-12">
+      <p class="mb-2 text-xs font-semibold uppercase tracking-widest text-gray-400">Contact</p>
+      <h2 class="text-3xl font-bold tracking-tight text-gray-950">Get in touch.</h2>
+    </div>
+
+    <form class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+      <div>
+        <label for="name" class="mb-1.5 block text-xs font-medium text-gray-500">Name</label>
+        <input
+          id="name"
+          type="text"
+          name="name"
+          autocomplete="name"
+          class="w-full border-b border-gray-200 bg-transparent pb-2 text-sm text-gray-950 outline-none transition placeholder:text-gray-300 focus:border-gray-950"
+          placeholder="Ada Lovelace"
+        />
+      </div>
+      <div>
+        <label for="email" class="mb-1.5 block text-xs font-medium text-gray-500">Email</label>
+        <input
+          id="email"
+          type="email"
+          name="email"
+          autocomplete="email"
+          class="w-full border-b border-gray-200 bg-transparent pb-2 text-sm text-gray-950 outline-none transition placeholder:text-gray-300 focus:border-gray-950"
+          placeholder="ada@example.com"
+        />
+      </div>
+      <div class="sm:col-span-2">
+        <label for="message" class="mb-1.5 block text-xs font-medium text-gray-500">Message</label>
+        <textarea
+          id="message"
+          name="message"
+          rows="4"
+          class="w-full resize-none border-b border-gray-200 bg-transparent pb-2 text-sm text-gray-950 outline-none transition placeholder:text-gray-300 focus:border-gray-950"
+          placeholder="Tell us what's on your mind…"
+        ></textarea>
+      </div>
+      <div class="flex items-center justify-between sm:col-span-2">
+        <p class="text-xs text-gray-400">We reply within one business day.</p>
+        <button
+          type="submit"
+          class="rounded-full bg-gray-950 px-5 py-2 text-sm font-semibold text-white transition hover:bg-gray-800"
+        >
+          Send →
+        </button>
+      </div>
+    </form>
+
+  </div>
+</section>

@@ -1,0 +1,70 @@
+---
+const columns = [
+  {
+    heading: "Product",
+    links: [
+      { label: "Blocks", href: "#" },
+      { label: "Pricing", href: "#" },
+      { label: "Changelog", href: "#" },
+      { label: "Roadmap", href: "#" },
+    ],
+  },
+  {
+    heading: "Resources",
+    links: [
+      { label: "Documentation", href: "#" },
+      { label: "GitHub", href: "#" },
+      { label: "Issues", href: "#" },
+      { label: "Contribute", href: "#" },
+    ],
+  },
+  {
+    heading: "Company",
+    links: [
+      { label: "About", href: "#" },
+      { label: "Blog", href: "#" },
+      { label: "License", href: "#" },
+      { label: "Contact", href: "#" },
+    ],
+  },
+];
+---
+
+<footer class="border-t border-gray-100 bg-white px-6 py-16 lg:px-8">
+  <div class="mx-auto max-w-5xl">
+    <div class="flex flex-col gap-12 sm:flex-row sm:justify-between">
+
+      <!-- Brand -->
+      <div class="max-w-xs">
+        <p class="text-sm font-bold tracking-tight text-gray-950">BlockUI</p>
+        <p class="mt-2 text-sm leading-6 text-gray-500">
+          A free, open-source gallery of copy-paste UI blocks built with Astro and Tailwind CSS.
+        </p>
+      </div>
+
+      <!-- Columns -->
+      <div class="grid grid-cols-2 gap-x-12 gap-y-10 sm:grid-cols-3">
+        {columns.map(({ heading, links }) => (
+          <div>
+            <p class="mb-4 text-xs font-semibold uppercase tracking-widest text-gray-400">{heading}</p>
+            <ul class="space-y-3">
+              {links.map(({ label, href }) => (
+                <li>
+                  <a href={href} class="text-sm text-gray-500 transition hover:text-gray-900">{label}</a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+
+    </div>
+
+    <div class="mt-14 flex flex-col items-center justify-between gap-4 border-t border-gray-100 pt-8 sm:flex-row">
+      <p class="text-xs text-gray-400">
+        © {new Date().getFullYear()} BlockUI. Open-source under the MIT license.
+      </p>
+      <p class="text-xs text-gray-400">Built with Astro &amp; Tailwind CSS</p>
+    </div>
+  </div>
+</footer>

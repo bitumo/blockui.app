@@ -1,0 +1,100 @@
+---
+const integrations = [
+  {
+    name: "Vercel",
+    description: "Deploy with zero config. Push to git, go live in seconds.",
+    category: "Hosting",
+    color: "bg-gray-950",
+    initial: "V",
+  },
+  {
+    name: "Supabase",
+    description: "Open source Firebase alternative with Postgres and auth.",
+    category: "Database",
+    color: "bg-emerald-600",
+    initial: "S",
+  },
+  {
+    name: "Cloudflare",
+    description: "Edge network, CDN, and serverless functions worldwide.",
+    category: "Infrastructure",
+    color: "bg-orange-500",
+    initial: "C",
+  },
+  {
+    name: "Stripe",
+    description: "Accept payments and manage subscriptions with one API.",
+    category: "Payments",
+    color: "bg-violet-600",
+    initial: "S",
+  },
+  {
+    name: "Resend",
+    description: "Developer-first email API built for modern applications.",
+    category: "Email",
+    color: "bg-sky-600",
+    initial: "R",
+  },
+  {
+    name: "Prisma",
+    description: "Type-safe ORM for Node.js and TypeScript projects.",
+    category: "ORM",
+    color: "bg-teal-700",
+    initial: "P",
+  },
+  {
+    name: "Sentry",
+    description: "Error monitoring and performance tracing in production.",
+    category: "Monitoring",
+    color: "bg-rose-600",
+    initial: "S",
+  },
+  {
+    name: "Algolia",
+    description: "Fast, relevant search for any data source.",
+    category: "Search",
+    color: "bg-blue-600",
+    initial: "A",
+  },
+  {
+    name: "Upstash",
+    description: "Serverless Redis and Kafka with per-request pricing.",
+    category: "Cache",
+    color: "bg-emerald-500",
+    initial: "U",
+  },
+];
+---
+
+<section class="bg-white px-6 py-24 lg:px-8">
+  <div class="mx-auto max-w-5xl">
+
+    <div class="mb-14 max-w-xl">
+      <p class="mb-3 text-xs font-semibold uppercase tracking-widest text-violet-600">Integrations</p>
+      <h2 class="text-4xl font-extrabold tracking-tight text-gray-950 sm:text-5xl">
+        Works with your stack.
+      </h2>
+      <p class="mt-4 text-base leading-7 text-gray-500">
+        BlockUI blocks drop into any Astro project alongside the tools you already use.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {integrations.map(({ name, description, category, color, initial }) => (
+        <div class="group flex items-start gap-4 rounded-2xl border border-gray-100 bg-white p-5 shadow-xs transition hover:border-gray-200 hover:shadow-sm">
+          <div class={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl text-sm font-bold text-white ${color}`}>
+            {initial}
+          </div>
+          <div class="min-w-0">
+            <div class="mb-0.5 flex items-center gap-2">
+              <p class="text-sm font-semibold text-gray-950">{name}</p>
+              <span class="rounded-full bg-gray-100 px-2 py-0.5 text-[10px] font-medium text-gray-400">{category}</span>
+            </div>
+            <p class="text-xs leading-5 text-gray-500">{description}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>

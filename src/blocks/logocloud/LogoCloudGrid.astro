@@ -1,0 +1,31 @@
+---
+const logos = [
+  { name: "Vercel"      },
+  { name: "Netlify"     },
+  { name: "Supabase"    },
+  { name: "Cloudflare"  },
+  { name: "PlanetScale" },
+  { name: "Prisma"      },
+  { name: "Railway"     },
+  { name: "Turso"       },
+];
+---
+
+<section class="border-t border-gray-100 bg-gray-50 px-6 py-16 lg:px-8">
+  <div class="mx-auto max-w-5xl">
+
+    <p class="mb-10 text-center text-xs font-semibold uppercase tracking-widest text-gray-400">
+      Trusted by teams at
+    </p>
+
+    <div class="grid grid-cols-2 divide-x divide-y divide-gray-200 overflow-hidden rounded-2xl border border-gray-200 sm:grid-cols-4">
+      {logos.map(({ name }) => (
+        <div class="flex items-center justify-center bg-white px-8 py-10 transition hover:bg-gray-50">
+          <!-- Placeholder wordmark — replace with real <img> or <svg> -->
+          <span class="text-sm font-semibold tracking-tight text-gray-300">{name}</span>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>

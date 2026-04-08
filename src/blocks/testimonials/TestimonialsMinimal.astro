@@ -1,0 +1,48 @@
+---
+const testimonials = [
+  {
+    quote: "BlockUI saved me hours on my last project. I grabbed a hero and a features section, tweaked the colors, and shipped the landing page the same afternoon.",
+    name: "Sarah Chen",
+    role: "Frontend Engineer",
+  },
+  {
+    quote: "Finally a component library that doesn't fight my design system. Because there is no design system — it's just Tailwind. Exactly what I wanted.",
+    name: "Marcus Rivera",
+    role: "Indie Hacker",
+  },
+  {
+    quote: "The code tab showing rendered HTML is genius. I can use these blocks in any project, not just Astro ones. Huge time saver.",
+    name: "Alex Nair",
+    role: "Full-stack Developer",
+  },
+  {
+    quote: "Open source, zero lock-in, and genuinely beautiful blocks. I've tried every similar tool and nothing comes close to how practical BlockUI is.",
+    name: "Daniel Webb",
+    role: "Software Engineer",
+  },
+];
+---
+
+<section class="bg-white px-6 py-24 lg:px-8">
+  <div class="mx-auto max-w-3xl">
+
+    <div class="mb-14">
+      <p class="mb-2 text-xs font-semibold uppercase tracking-widest text-gray-400">Testimonials</p>
+      <h2 class="text-3xl font-bold tracking-tight text-gray-950">What people are saying.</h2>
+    </div>
+
+    <div class="divide-y divide-gray-100">
+      {testimonials.map(({ quote, name, role }) => (
+        <figure class="py-8">
+          <blockquote class="mb-4 text-base leading-7 text-gray-700">"{quote}"</blockquote>
+          <figcaption class="flex items-center gap-2 text-sm">
+            <span class="font-semibold text-gray-950">{name}</span>
+            <span class="text-gray-300">—</span>
+            <span class="text-gray-400">{role}</span>
+          </figcaption>
+        </figure>
+      ))}
+    </div>
+
+  </div>
+</section>

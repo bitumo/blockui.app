@@ -1,0 +1,58 @@
+---
+const faqs = [
+  {
+    question: "Do I need to install anything?",
+    answer: "No. Every block is a standalone .astro file. Copy it into your project and it works immediately — no npm install, no config, no peer dependencies.",
+  },
+  {
+    question: "Can I use blocks outside of Astro?",
+    answer: "Yes. Each block renders to plain HTML with Tailwind classes. Copy the rendered output and use it in any framework or plain HTML project.",
+  },
+  {
+    question: "Is BlockUI free?",
+    answer: "BlockUI is completely free and open-source under the MIT license. Use it in personal and commercial projects without restriction.",
+  },
+  {
+    question: "How do I customise a block?",
+    answer: "Every block uses plain Tailwind classes directly in the markup. Change colors, adjust spacing, or restructure the HTML — no abstractions, no surprises.",
+  },
+  {
+    question: "Are the blocks accessible?",
+    answer: "Yes. All blocks use semantic HTML, include appropriate ARIA attributes, and support keyboard navigation out of the box.",
+  },
+  {
+    question: "How often are new blocks added?",
+    answer: "New blocks and variants are added regularly. Watch the GitHub repo or follow us on Twitter to get notified.",
+  },
+];
+
+const half = Math.ceil(faqs.length / 2);
+const left  = faqs.slice(0, half);
+const right = faqs.slice(half);
+---
+
+<section class="bg-gray-50 px-6 py-24 lg:px-8">
+  <div class="mx-auto max-w-5xl">
+
+    <div class="mb-14">
+      <p class="mb-3 text-xs font-semibold uppercase tracking-widest text-violet-600">FAQ</p>
+      <h2 class="text-4xl font-extrabold tracking-tight text-gray-950 sm:text-5xl">
+        Common questions.
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-1 gap-x-16 gap-y-0 sm:grid-cols-2">
+      {[left, right].map((col) => (
+        <div class="divide-y divide-gray-200">
+          {col.map(({ question, answer }) => (
+            <div class="py-7">
+              <p class="mb-3 text-sm font-semibold text-gray-950">{question}</p>
+              <p class="text-sm leading-6 text-gray-500">{answer}</p>
+            </div>
+          ))}
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>

@@ -1,0 +1,68 @@
+---
+const lines = [
+  { prompt: true,  text: "cd my-astro-project" },
+  { prompt: false, text: "" },
+  { prompt: true,  text: "cp hero-centered.astro src/components/" },
+  { prompt: false, text: "" },
+  { prompt: false, text: "✓  Copied in 0ms. No install needed.", highlight: true },
+  { prompt: false, text: "" },
+  { prompt: true,  text: "bun dev" },
+  { prompt: false, text: "" },
+  { prompt: false, text: " astro  v4.0.0  ready in 312ms" },
+  { prompt: false, text: "" },
+  { prompt: false, text: "  ┃ Local    http://localhost:4321/", accent: true },
+  { prompt: false, text: "  ┃ Network  http://192.168.1.5:4321/" },
+];
+---
+
+<section class="bg-gray-950 px-6 py-24 lg:px-8">
+  <div class="mx-auto max-w-3xl">
+
+    <div class="mb-12 text-center">
+      <p class="mb-3 text-xs font-semibold uppercase tracking-widest text-violet-400">Zero config</p>
+      <h2 class="text-4xl font-extrabold tracking-tight text-white sm:text-5xl">
+        Paste it. Run it. Done.
+      </h2>
+      <p class="mx-auto mt-4 max-w-lg text-base leading-7 text-gray-400">
+        No CLI, no config file, no peer dependency warnings. Just copy one file and start the dev server.
+      </p>
+    </div>
+
+    <!-- Terminal window -->
+    <div class="overflow-hidden rounded-2xl border border-white/10 bg-black/60 font-mono text-sm backdrop-blur-sm">
+      <div class="flex items-center gap-2 border-b border-white/10 px-5 py-3.5">
+        <span class="h-3 w-3 rounded-full bg-red-500/60"></span>
+        <span class="h-3 w-3 rounded-full bg-amber-400/60"></span>
+        <span class="h-3 w-3 rounded-full bg-emerald-400/60"></span>
+        <span class="ml-3 text-xs text-gray-500">zsh — my-astro-project</span>
+      </div>
+      <div class="space-y-0.5 px-5 py-5 leading-7">
+        {lines.map(({ prompt, text, highlight, accent }) => (
+          <p class={
+            highlight ? "text-emerald-400" :
+            accent    ? "text-violet-400"  :
+            prompt    ? "text-gray-200"    :
+                        "text-gray-500"
+          }>
+            {prompt && <span class="mr-2 text-violet-500">❯</span>}
+            {text}
+          </p>
+        ))}
+        <p class="text-gray-200">
+          <span class="mr-2 text-violet-500">❯</span>
+          <span class="inline-block h-4 w-2 animate-pulse bg-gray-400 align-middle"></span>
+        </p>
+      </div>
+    </div>
+
+    <div class="mt-10 flex flex-wrap items-center justify-center gap-6 text-xs text-gray-500">
+      {["No npm install", "No config files", "No peer deps", "Works with any Astro project"].map((t) => (
+        <span class="flex items-center gap-1.5">
+          <span class="h-1 w-1 rounded-full bg-violet-500"></span>
+          {t}
+        </span>
+      ))}
+    </div>
+
+  </div>
+</section>

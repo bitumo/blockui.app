@@ -1,0 +1,84 @@
+---
+const featured = [
+  {
+    name: "Vercel",
+    description: "Push to git, deploy to the edge. Zero-config CI/CD that just works with Astro.",
+    category: "Hosting",
+    color: "bg-gray-950",
+    initial: "V",
+    wide: true,
+  },
+  {
+    name: "Supabase",
+    description: "Postgres, auth, storage, and real-time — all in one open-source platform.",
+    category: "Database",
+    color: "bg-emerald-600",
+    initial: "S",
+    wide: false,
+  },
+  {
+    name: "Stripe",
+    description: "The world's most complete payments platform. One API for everything money.",
+    category: "Payments",
+    color: "bg-violet-600",
+    initial: "S",
+    wide: false,
+  },
+  {
+    name: "Cloudflare",
+    description: "Global edge network, CDN, serverless workers, and DDoS protection.",
+    category: "Infrastructure",
+    color: "bg-orange-500",
+    initial: "C",
+    wide: true,
+  },
+];
+
+const extras = ["Resend", "Prisma", "Sentry", "Algolia", "Upstash", "Railway"];
+---
+
+<section class="bg-gray-50 px-6 py-24 lg:px-8">
+  <div class="mx-auto max-w-5xl">
+
+    <div class="mb-14 flex items-end justify-between">
+      <div class="max-w-lg">
+        <p class="mb-3 text-xs font-semibold uppercase tracking-widest text-violet-600">Integrations</p>
+        <h2 class="text-4xl font-extrabold tracking-tight text-gray-950 sm:text-5xl">
+          Works with your stack.
+        </h2>
+      </div>
+      <p class="hidden max-w-xs text-sm leading-6 text-gray-400 sm:block">
+        Drop BlockUI blocks into any project alongside the tools you already rely on.
+      </p>
+    </div>
+
+    <!-- Bento grid -->
+    <div class="grid grid-cols-1 gap-4 sm:grid-cols-3">
+      {featured.map(({ name, description, category, color, initial, wide }) => (
+        <div class={`rounded-3xl border border-gray-200 bg-white p-7 shadow-xs ${wide ? "sm:col-span-2" : ""}`}>
+          <div class="mb-5 flex items-start justify-between">
+            <div class={`flex h-11 w-11 items-center justify-center rounded-xl text-sm font-bold text-white ${color}`}>
+              {initial}
+            </div>
+            <span class="rounded-full bg-gray-100 px-2.5 py-1 text-[10px] font-medium text-gray-400">
+              {category}
+            </span>
+          </div>
+          <p class="mb-1.5 text-base font-bold text-gray-950">{name}</p>
+          <p class="text-sm leading-6 text-gray-500">{description}</p>
+        </div>
+      ))}
+    </div>
+
+    <!-- More integrations -->
+    <div class="mt-6 flex flex-wrap items-center gap-3">
+      <span class="text-xs font-medium text-gray-400">Also works with</span>
+      {extras.map((name) => (
+        <span class="rounded-full border border-gray-200 bg-white px-3 py-1 text-xs font-medium text-gray-500 shadow-xs">
+          {name}
+        </span>
+      ))}
+    </div>
+
+  </div>
+</section>

@@ -1,0 +1,86 @@
+---
+const steps = [
+  {
+    title: "Copy the block",
+    description: "Browse the gallery, find a block you like, and click Copy to grab the source.",
+    code: `<!-- hero-centered.astro is ready to use -->
+<section class="relative isolate flex
+  h-svh items-center px-6">
+  <div class="mx-auto max-w-3xl text-center">
+    <h1 class="text-6xl font-extrabold">
+      Beautiful blocks,
+      <span class="text-violet-600">
+        ready to ship.
+      </span>
+    </h1>
+  </div>
+</section>`,
+    lang: "html",
+  },
+  {
+    title: "Drop it in your project",
+    description: "Paste the file into your Astro project. No installs, no imports, no configuration.",
+    code: `src/
+└── pages/
+    └── index.astro   ← your page
+src/
+└── components/
+    └── HeroCentered.astro  ← paste here`,
+    lang: "bash",
+  },
+  {
+    title: "Customise with Tailwind",
+    description: "Every class is plain Tailwind. Change colors, spacing, or layout in seconds.",
+    code: `<!-- swap violet for your brand color -->
+<h1 class="text-6xl font-extrabold">
+  Beautiful blocks,
+  <span class="text-indigo-600">
+    ready to ship.
+  </span>
+</h1>`,
+    lang: "html",
+  },
+];
+
+const colors: Record<string, { token: string; comment: string; tag: string; attr: string; string: string; plain: string }> = {
+  html: { token: "text-fuchsia-400", comment: "text-gray-600", tag: "text-sky-400", attr: "text-amber-300", string: "text-emerald-300", plain: "text-gray-200" },
+  bash: { token: "text-fuchsia-400", comment: "text-gray-600", tag: "text-emerald-400", attr: "text-amber-300", string: "text-emerald-300", plain: "text-gray-200" },
+};
+---
+
+<section class="bg-white px-6 py-24 lg:px-8">
+  <div class="mx-auto max-w-5xl">
+
+    <div class="mb-16 max-w-xl">
+      <p class="mb-3 text-xs font-semibold uppercase tracking-widest text-violet-600">How it works</p>
+      <h2 class="text-4xl font-extrabold tracking-tight text-gray-950 sm:text-5xl">
+        Three steps to ship.
+      </h2>
+    </div>
+
+    <div class="space-y-6">
+      {steps.map(({ title, description, code, lang }, i) => (
+        <div class="grid grid-cols-1 gap-6 overflow-hidden rounded-2xl border border-gray-100 bg-gray-50 p-8 sm:grid-cols-2 sm:items-center">
+
+          <div>
+            <p class="mb-2 font-mono text-xs text-gray-300">0{i + 1}</p>
+            <h3 class="mb-2 text-lg font-bold tracking-tight text-gray-950">{title}</h3>
+            <p class="text-sm leading-6 text-gray-500">{description}</p>
+          </div>
+
+          <div class="overflow-hidden rounded-xl bg-gray-950 font-mono text-xs leading-6">
+            <div class="flex items-center gap-1.5 border-b border-white/10 px-4 py-3">
+              <span class="h-2 w-2 rounded-full bg-red-500/50"></span>
+              <span class="h-2 w-2 rounded-full bg-amber-400/50"></span>
+              <span class="h-2 w-2 rounded-full bg-emerald-400/50"></span>
+              <span class="ml-2 text-[11px] text-gray-600">{lang}</span>
+            </div>
+            <pre class="overflow-x-auto px-5 py-4 text-gray-300">{code}</pre>
+          </div>
+
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>

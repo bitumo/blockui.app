@@ -1,0 +1,92 @@
+---
+const testimonials = [
+  {
+    quote: "BlockUI saved me hours on my last project. I grabbed a hero and a features section, tweaked the colors, and shipped the landing page the same afternoon.",
+    name: "Sarah Chen",
+    role: "Frontend Engineer",
+    avatar: "SC",
+    color: "bg-violet-500",
+  },
+  {
+    quote: "Finally a component library that doesn't fight my design system. Because there is no design system — it's just Tailwind. Exactly what I wanted.",
+    name: "Marcus Rivera",
+    role: "Indie Hacker",
+    avatar: "MR",
+    color: "bg-sky-500",
+  },
+  {
+    quote: "The minimalist variants are stunning. Clean, fast, accessible out of the box. My clients keep asking how I build so quickly — this is my secret.",
+    name: "Mia Laurent",
+    role: "UI Designer",
+    avatar: "ML",
+    color: "bg-rose-500",
+  },
+];
+
+const featured = {
+  quote: "I've been building Astro sites for two years and BlockUI is now a permanent part of my workflow. The preview at every breakpoint, the one-click copy, the zero-config setup — everything just works. I can't imagine going back.",
+  name: "Tom Berg",
+  role: "Web Designer at Studio Nordvik",
+  avatar: "TB",
+};
+---
+
+<section class="bg-white px-6 py-24 lg:px-8">
+  <div class="mx-auto max-w-5xl">
+
+    <div class="mb-14">
+      <p class="mb-3 text-xs font-semibold uppercase tracking-widest text-violet-600">Testimonials</p>
+      <h2 class="text-4xl font-extrabold tracking-tight text-gray-950 sm:text-5xl">
+        Loved by developers.
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-1 gap-6 lg:grid-cols-5">
+
+      <!-- Featured quote -->
+      <figure class="relative overflow-hidden rounded-3xl bg-gray-950 p-10 lg:col-span-3">
+        <div aria-hidden="true" class="absolute -top-20 -right-20 h-64 w-64 rounded-full bg-violet-700 opacity-20 blur-3xl"></div>
+        <div class="relative">
+          <div class="mb-6 flex gap-1 text-violet-400" aria-label="5 out of 5 stars">
+            {Array(5).fill(null).map(() => (
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="h-4 w-4" aria-hidden="true">
+                <path fill-rule="evenodd" d="M8 1.25a.75.75 0 0 1 .692.463l1.32 3.052 3.316.379a.75.75 0 0 1 .434 1.272l-2.44 2.26.666 3.268a.75.75 0 0 1-1.107.802L8 10.884l-2.881 1.862a.75.75 0 0 1-1.107-.802l.666-3.268-2.44-2.26a.75.75 0 0 1 .434-1.272l3.316-.38L7.308 1.713A.75.75 0 0 1 8 1.25Z" clip-rule="evenodd" />
+              </svg>
+            ))}
+          </div>
+          <blockquote class="mb-8 text-lg leading-8 font-medium text-white">
+            "{featured.quote}"
+          </blockquote>
+          <figcaption class="flex items-center gap-3">
+            <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-violet-600 text-xs font-bold text-white">
+              {featured.avatar}
+            </div>
+            <div>
+              <p class="text-sm font-semibold text-white">{featured.name}</p>
+              <p class="text-xs text-gray-400">{featured.role}</p>
+            </div>
+          </figcaption>
+        </div>
+      </figure>
+
+      <!-- Side quotes -->
+      <div class="flex flex-col gap-4 lg:col-span-2">
+        {testimonials.map(({ quote, name, role, avatar, color }) => (
+          <figure class="flex flex-1 flex-col justify-between rounded-2xl border border-gray-100 bg-gray-50 p-6">
+            <blockquote class="mb-4 text-sm leading-6 text-gray-600">"{quote}"</blockquote>
+            <figcaption class="flex items-center gap-2.5">
+              <div class={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-[10px] font-bold text-white ${color}`}>
+                {avatar}
+              </div>
+              <div>
+                <p class="text-xs font-semibold text-gray-950">{name}</p>
+                <p class="text-[11px] text-gray-400">{role}</p>
+              </div>
+            </figcaption>
+          </figure>
+        ))}
+      </div>
+
+    </div>
+  </div>
+</section>

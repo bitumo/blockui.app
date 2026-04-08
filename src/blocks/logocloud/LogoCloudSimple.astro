@@ -1,0 +1,33 @@
+---
+const logos = [
+  { name: "Vercel",     width: 80  },
+  { name: "Netlify",    width: 88  },
+  { name: "Supabase",   width: 104 },
+  { name: "Cloudflare", width: 116 },
+  { name: "PlanetScale",width: 112 },
+  { name: "Prisma",     width: 76  },
+];
+---
+
+<section class="border-t border-gray-100 bg-white px-6 py-16 lg:px-8">
+  <div class="mx-auto max-w-5xl">
+
+    <p class="mb-10 text-center text-xs font-semibold uppercase tracking-widest text-gray-400">
+      Trusted by teams at
+    </p>
+
+    <div class="flex flex-wrap items-center justify-center gap-x-12 gap-y-8">
+      {logos.map(({ name, width }) => (
+        <div
+          class="flex items-center justify-center"
+          style={`width:${width}px`}
+          aria-label={name}
+        >
+          <!-- Placeholder wordmark — replace with real <img> or <svg> -->
+          <span class="text-sm font-semibold tracking-tight text-gray-300">{name}</span>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>

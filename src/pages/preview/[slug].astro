@@ -1,0 +1,29 @@
+---
+import "../../styles/global.css";
+import { blocks } from "../../blocks";
+
+export async function getStaticPaths() {
+  return Object.values(blocks)
+    .flatMap(({ variants }) => variants)
+    .map(({ slug }) => ({
+      params: { slug },
+    }));
+}
+
+const slug = Astro.params.slug;
+const { component: Component } = Object.values(blocks)
+  .flatMap(({ variants }) => variants)
+  .filter(({ slug: s }) => s === slug)[0];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{slug}</title>
+  </head>
+  <body>
+    <Component />
+  </body>
+</html>

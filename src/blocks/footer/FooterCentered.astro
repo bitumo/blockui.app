@@ -1,0 +1,23 @@
+---
+const links = [
+  { label: "Home", href: "#" },
+  { label: "Blocks", href: "#" },
+  { label: "Pricing", href: "#" },
+  { label: "GitHub", href: "#" },
+  { label: "Issues", href: "#" },
+];
+---
+
+<footer class="border-t border-gray-100 bg-white px-6 py-12 lg:px-8">
+  <div class="mx-auto max-w-5xl text-center">
+    <p class="text-sm font-bold tracking-tight text-gray-950">BlockUI</p>
+    <nav class="mt-6 flex flex-wrap justify-center gap-x-6 gap-y-2" aria-label="Footer">
+      {links.map(({ label, href }) => (
+        <a href={href} class="text-sm text-gray-500 transition hover:text-gray-900">{label}</a>
+      ))}
+    </nav>
+    <p class="mt-8 text-xs text-gray-400">
+      © {new Date().getFullYear()} BlockUI. Open-source under the MIT license.
+    </p>
+  </div>
+</footer>

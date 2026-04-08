@@ -1,0 +1,58 @@
+---
+const snippets = [
+  {
+    label: "No imports",
+    code: `---
+// Nothing to import. Nothing to configure.
+---
+
+<section class="...">
+  <h1>Your content here.</h1>
+</section>`,
+  },
+  {
+    label: "Plain Tailwind",
+    code: `<!-- Every class is standard Tailwind.
+     Change anything you want. -->
+<h1 class="text-5xl font-extrabold
+           tracking-tight text-gray-950">
+  Beautiful blocks.
+</h1>`,
+  },
+  {
+    label: "Works anywhere",
+    code: `<!-- Renders to plain HTML.
+     Use it in React, Vue, or any framework. -->
+<section class="relative isolate ...">
+  <div class="mx-auto max-w-3xl">
+    ...
+  </div>
+</section>`,
+  },
+];
+---
+
+<section class="border-t border-gray-100 bg-white px-6 py-24 lg:px-8">
+  <div class="mx-auto max-w-5xl">
+
+    <div class="mb-14 max-w-lg">
+      <p class="mb-2 text-xs font-semibold uppercase tracking-widest text-gray-400">How it works</p>
+      <h2 class="text-3xl font-bold tracking-tight text-gray-950">
+        Simple by design.
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-1 gap-4 sm:grid-cols-3">
+      {snippets.map(({ label, code }) => (
+        <div class="overflow-hidden rounded-2xl border border-gray-100">
+          <div class="flex items-center justify-between border-b border-gray-100 bg-gray-50 px-4 py-3">
+            <span class="text-xs font-semibold text-gray-500">{label}</span>
+            <span class="font-mono text-[10px] text-gray-300">.astro</span>
+          </div>
+          <pre class="overflow-x-auto bg-white px-4 py-4 font-mono text-xs leading-6 text-gray-400">{code}</pre>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>

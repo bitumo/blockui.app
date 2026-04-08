@@ -1,0 +1,56 @@
+---
+---
+
+<section class="bg-white px-6 py-24 sm:py-32 lg:px-8">
+  <div class="mx-auto max-w-5xl">
+
+    <!-- Section header -->
+    <div class="mb-16 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+      <h2 class="text-4xl font-light tracking-tight text-gray-950 sm:text-5xl">
+        Why teams<br />
+        <em class="font-semibold not-italic">choose BlockUI.</em>
+      </h2>
+      <p class="max-w-xs text-sm leading-6 text-gray-400 sm:text-right">
+        Designed to get out of your way — clean blocks that fit any project.
+      </p>
+    </div>
+
+    <!-- Divider -->
+    <div class="mb-0 h-px bg-gray-100"></div>
+
+    <!-- Feature rows -->
+    <dl>
+      {[
+        {
+          number: "01",
+          title: "Zero dependencies",
+          body: "Each block is a self-contained file. No third-party libraries, no runtime overhead — just HTML, CSS, and the framework you already use.",
+        },
+        {
+          number: "02",
+          title: "Copy, paste, done",
+          body: "Skip the npm install. Grab the source from the code tab, drop it into your project, and customise it however you like.",
+        },
+        {
+          number: "03",
+          title: "Accessible by default",
+          body: "Semantic HTML elements, proper heading hierarchy, keyboard-navigable interactions, and meaningful ARIA attributes throughout.",
+        },
+        {
+          number: "04",
+          title: "Responsive at every breakpoint",
+          body: "Built mobile-first with Tailwind breakpoints. Every block looks right on a 320 px phone and a 4K monitor alike.",
+        },
+      ].map(({ number, title, body }) => (
+        <div class="group grid grid-cols-[3rem_1fr] items-start gap-8 border-b border-gray-100 py-8 sm:grid-cols-[3rem_1fr_2fr]">
+          <span class="pt-0.5 text-xs font-semibold tabular-nums text-gray-300 transition group-hover:text-gray-400">
+            {number}
+          </span>
+          <dt class="text-sm font-semibold text-gray-950">{title}</dt>
+          <dd class="col-start-2 text-sm leading-6 text-gray-500 sm:col-start-3">{body}</dd>
+        </div>
+      ))}
+    </dl>
+
+  </div>
+</section>

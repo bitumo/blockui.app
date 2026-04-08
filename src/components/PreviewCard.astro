@@ -1,0 +1,264 @@
+---
+import { format } from "prettier";
+import { codeToHtml } from "shiki";
+
+interface Props {
+  name: string;
+  description?: string;
+  category: string;
+  slug: string;
+}
+
+const { name, description, category, slug } = Astro.props;
+
+// "hero-centered" → "Hero Centered"
+const displayName = name
+  .split("-")
+  .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+  .join(" ");
+
+const rendered = await Astro.slots.render("default");
+const formatted = await format(rendered, { parser: "html", printWidth: 80 });
+const highlighted = await codeToHtml(formatted, {
+  lang: "html",
+  theme: "github-dark",
+  colorReplacements: { "#24292e": "#030712" },
+});
+---
+
+<article id={slug} data-preview-card class="mb-16">
+
+  <!-- Card header -->
+  <div class="mb-3 flex items-center justify-between gap-4">
+    <div class="flex items-center gap-2.5">
+      <h2 class="text-sm font-semibold text-gray-900">{displayName}</h2>
+      {description && <span class="text-gray-300" aria-hidden="true">·</span>}
+      {description && <p class="text-xs text-gray-400">{description}</p>}
+    </div>
+    <span class="shrink-0 rounded-full bg-gray-100 px-2.5 py-0.5 text-xs font-medium text-gray-500">
+      {category}
+    </span>
+  </div>
+
+  <!-- Card shell -->
+  <div class="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-xs">
+
+    <!-- Toolbar -->
+    <div class="flex items-center gap-1 border-b border-gray-100 bg-gray-50 px-2 py-1.5">
+
+      <!-- Tabs (pill style) -->
+      <div class="flex items-center gap-0.5 rounded-lg bg-gray-200/60 p-0.5">
+        <button
+          data-tab-btn="preview"
+          class="rounded-md px-3 py-1 text-xs font-medium transition-all duration-150 bg-white text-gray-900 shadow-xs"
+        >
+          Preview
+        </button>
+        <button
+          data-tab-btn="code"
+          class="rounded-md px-3 py-1 text-xs font-medium transition-all duration-150 text-gray-500 hover:text-gray-700"
+        >
+          Code
+        </button>
+      </div>
+
+      <!-- Viewport presets -->
+      <div data-viewport-presets class="ml-2 flex items-center gap-0.5">
+        <button
+          data-preset="375"
+          title="Mobile (375px)"
+          class="rounded-md p-1.5 text-gray-400 transition hover:bg-gray-200/60 hover:text-gray-700"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="h-3.5 w-3.5" aria-hidden="true">
+            <path d="M5.25 1A2.25 2.25 0 0 0 3 3.25v9.5A2.25 2.25 0 0 0 5.25 15h5.5A2.25 2.25 0 0 0 13 12.75v-9.5A2.25 2.25 0 0 0 10.75 1h-5.5ZM8 13a.75.75 0 1 1 0-1.5A.75.75 0 0 1 8 13Z" />
+          </svg>
+        </button>
+        <button
+          data-preset="768"
+          title="Tablet (768px)"
+          class="rounded-md p-1.5 text-gray-400 transition hover:bg-gray-200/60 hover:text-gray-700"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="h-3.5 w-3.5" aria-hidden="true">
+            <path d="M1 3.25C1 2.007 2.007 1 3.25 1h9.5C13.993 1 15 2.007 15 3.25v9.5A2.25 2.25 0 0 1 12.75 15h-9.5A2.25 2.25 0 0 1 1 12.75v-9.5ZM3.25 2.5a.75.75 0 0 0-.75.75v9.5c0 .414.336.75.75.75h9.5a.75.75 0 0 0 .75-.75v-9.5a.75.75 0 0 0-.75-.75h-9.5ZM8 12a.75.75 0 1 0 0-1.5A.75.75 0 0 0 8 12Z" />
+          </svg>
+        </button>
+        <button
+          data-preset="100%"
+          title="Full width"
+          class="rounded-md p-1.5 text-gray-400 transition hover:bg-gray-200/60 hover:text-gray-700"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="h-3.5 w-3.5" aria-hidden="true">
+            <path fill-rule="evenodd" d="M2 3.75A.75.75 0 0 1 2.75 3h10.5a.75.75 0 0 1 0 1.5H2.75A.75.75 0 0 1 2 3.75ZM2 8a.75.75 0 0 1 .75-.75h10.5a.75.75 0 0 1 0 1.5H2.75A.75.75 0 0 1 2 8Zm0 4.25a.75.75 0 0 1 .75-.75h10.5a.75.75 0 0 1 0 1.5H2.75a.75.75 0 0 1-.75-.75Z" clip-rule="evenodd" />
+          </svg>
+        </button>
+      </div>
+
+      <!-- Width badge (shown while dragging) -->
+      <span
+        data-width-badge
+        class="hidden rounded bg-gray-900 px-1.5 py-0.5 text-xs tabular-nums text-white"
+      ></span>
+
+      <!-- Open in new tab -->
+      <a
+        href={`/preview/${slug}`}
+        target="_blank"
+        title="Open in new tab"
+        class="ml-auto flex items-center gap-1.5 rounded-md px-2.5 py-1 text-xs font-medium text-gray-400 transition hover:bg-gray-200/60 hover:text-gray-700"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="h-3.5 w-3.5" aria-hidden="true">
+          <path d="M6.22 8.72a.75.75 0 0 0 1.06 1.06l5.22-5.22v1.69a.75.75 0 0 0 1.5 0v-3.5a.75.75 0 0 0-.75-.75h-3.5a.75.75 0 0 0 0 1.5h1.69L6.22 8.72Z" />
+          <path d="M3.5 6.75c0-.69.56-1.25 1.25-1.25H7A.75.75 0 0 0 7 4H4.75A2.75 2.75 0 0 0 2 6.75v4.5A2.75 2.75 0 0 0 4.75 14h4.5A2.75 2.75 0 0 0 12 11.25V9a.75.75 0 0 0-1.5 0v2.25c0 .69-.56 1.25-1.25 1.25h-4.5c-.69 0-1.25-.56-1.25-1.25v-4.5Z" />
+        </svg>
+        Open
+      </a>
+    </div>
+
+    <!-- Preview panel -->
+    <div data-panel="preview" class="bg-[#f5f5f5] p-4">
+      <div
+        data-preview-resizer
+        class="relative mx-auto min-w-80 overflow-hidden rounded-xl bg-white shadow-sm ring-1 ring-black/5"
+        style="width:100%"
+      >
+        <slot />
+        <!-- Resize handle -->
+        <div
+          data-resize-handle
+          class="group absolute top-0 right-0 flex h-full w-4 cursor-col-resize select-none items-center justify-center"
+        >
+          <div class="flex flex-col gap-[3px]">
+            <span class="h-[3px] w-[3px] rounded-full bg-gray-300 transition group-hover:bg-violet-400 group-active:bg-violet-500"></span>
+            <span class="h-[3px] w-[3px] rounded-full bg-gray-300 transition group-hover:bg-violet-400 group-active:bg-violet-500"></span>
+            <span class="h-[3px] w-[3px] rounded-full bg-gray-300 transition group-hover:bg-violet-400 group-active:bg-violet-500"></span>
+            <span class="h-[3px] w-[3px] rounded-full bg-gray-300 transition group-hover:bg-violet-400 group-active:bg-violet-500"></span>
+            <span class="h-[3px] w-[3px] rounded-full bg-gray-300 transition group-hover:bg-violet-400 group-active:bg-violet-500"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Code panel -->
+    <div data-panel="code" class="hidden">
+      <div class="relative">
+        <button
+          data-copy-btn
+          class="absolute top-3.5 right-3.5 z-10 flex items-center gap-1.5 rounded-lg bg-white/8 px-3 py-1.5 text-xs font-medium text-gray-300 ring-1 ring-white/10 backdrop-blur-sm transition hover:bg-white/15"
+        >
+          <svg data-copy-icon xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="h-3.5 w-3.5" aria-hidden="true">
+            <path fill-rule="evenodd" d="M11.986 3H12a2 2 0 0 1 2 2v6a2 2 0 0 1-1.5 1.937V7A2.5 2.5 0 0 0 10 4.5H4.063A2 2 0 0 1 6 3h.014A2.25 2.25 0 0 1 8.25 1h1.5a2.25 2.25 0 0 1 2.236 2ZM10.5 4v-.175a2.25 2.25 0 0 0-.197-.825H4a.5.5 0 0 0-.5.5V12a.5.5 0 0 0 .5.5h6a.5.5 0 0 0 .5-.5V4.5a.5.5 0 0 0-.5-.5h-.5Z" clip-rule="evenodd" />
+          </svg>
+          <svg data-check-icon xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="hidden h-3.5 w-3.5 text-emerald-400" aria-hidden="true">
+            <path fill-rule="evenodd" d="M12.416 3.376a.75.75 0 0 1 .208 1.04l-5 7.5a.75.75 0 0 1-1.154.114l-3-3a.75.75 0 0 1 1.06-1.06l2.353 2.353 4.493-6.74a.75.75 0 0 1 1.04-.207Z" clip-rule="evenodd" />
+          </svg>
+          <span data-copy-label>Copy</span>
+        </button>
+        <div class="[&>pre]:max-h-120 [&>pre]:overflow-x-auto [&>pre]:rounded-b-2xl [&>pre]:p-6 [&>pre]:text-sm [&>pre]:leading-relaxed">
+          <Fragment set:html={highlighted} />
+        </div>
+      </div>
+    </div>
+
+  </div>
+</article>
+
+<script>
+  for (const card of document.querySelectorAll<HTMLElement>("[data-preview-card]")) {
+    const previewPanel = card.querySelector<HTMLElement>("[data-panel='preview']")!;
+    const codePanel   = card.querySelector<HTMLElement>("[data-panel='code']")!;
+    const previewBtn  = card.querySelector<HTMLButtonElement>("[data-tab-btn='preview']")!;
+    const codeBtn     = card.querySelector<HTMLButtonElement>("[data-tab-btn='code']")!;
+
+    // ── Tabs ─────────────────────────────────────────────────────────────────
+    function activateTab(tab: "preview" | "code") {
+      const isPreview = tab === "preview";
+      previewPanel.classList.toggle("hidden", !isPreview);
+      codePanel.classList.toggle("hidden", isPreview);
+
+      const active   = "bg-white text-gray-900 shadow-xs";
+      const inactive = "text-gray-500 hover:text-gray-700";
+      previewBtn.className = previewBtn.className.replace(isPreview ? inactive : active, "");
+      codeBtn.className    = codeBtn.className.replace(!isPreview ? inactive : active, "");
+
+      if (isPreview) {
+        previewBtn.classList.add(...active.split(" "));
+        previewBtn.classList.remove(...inactive.split(" "));
+        codeBtn.classList.add(...inactive.split(" "));
+        codeBtn.classList.remove(...active.split(" "));
+      } else {
+        codeBtn.classList.add(...active.split(" "));
+        codeBtn.classList.remove(...inactive.split(" "));
+        previewBtn.classList.add(...inactive.split(" "));
+        previewBtn.classList.remove(...active.split(" "));
+      }
+    }
+
+    previewBtn.addEventListener("click", () => activateTab("preview"));
+    codeBtn.addEventListener("click",    () => activateTab("code"));
+
+    // ── Viewport presets ─────────────────────────────────────────────────────
+    const resizer    = card.querySelector<HTMLElement>("[data-preview-resizer]")!;
+    const widthBadge = card.querySelector<HTMLElement>("[data-width-badge]")!;
+
+    function applyWidth(value: string) {
+      const outer = resizer.parentElement!.getBoundingClientRect().width;
+      if (value === "100%") {
+        resizer.style.width = "100%";
+      } else {
+        const px = Math.min(parseInt(value), outer);
+        resizer.style.width = `${px}px`;
+      }
+    }
+
+    card.querySelectorAll<HTMLButtonElement>("[data-preset]").forEach((btn) => {
+      btn.addEventListener("click", () => applyWidth(btn.dataset.preset!));
+    });
+
+    // ── Resize handle ────────────────────────────────────────────────────────
+    const handle = card.querySelector<HTMLElement>("[data-resize-handle]")!;
+
+    handle.addEventListener("mousedown", (e) => {
+      e.preventDefault();
+      const outerWidth = resizer.parentElement!.getBoundingClientRect().width;
+      const startX     = e.clientX;
+      const startWidth = resizer.getBoundingClientRect().width;
+
+      widthBadge.classList.remove("hidden");
+
+      function onMouseMove(e: MouseEvent) {
+        const next = Math.min(Math.max(startWidth + e.clientX - startX, 320), outerWidth);
+        resizer.style.width  = `${next}px`;
+        widthBadge.textContent = `${Math.round(next)}px`;
+      }
+
+      function onMouseUp() {
+        widthBadge.classList.add("hidden");
+        document.removeEventListener("mousemove", onMouseMove);
+        document.removeEventListener("mouseup",   onMouseUp);
+      }
+
+      document.addEventListener("mousemove", onMouseMove);
+      document.addEventListener("mouseup",   onMouseUp);
+    });
+
+    // ── Copy button ──────────────────────────────────────────────────────────
+    const copyBtn   = card.querySelector<HTMLButtonElement>("[data-copy-btn]")!;
+    const copyIcon  = copyBtn.querySelector<SVGElement>("[data-copy-icon]")!;
+    const checkIcon = copyBtn.querySelector<SVGElement>("[data-check-icon]")!;
+    const copyLabel = copyBtn.querySelector<HTMLElement>("[data-copy-label]")!;
+
+    copyBtn.addEventListener("click", () => {
+      const code = card.querySelector("[data-panel='code'] pre")?.textContent ?? "";
+      navigator.clipboard.writeText(code).then(() => {
+        copyIcon.classList.add("hidden");
+        checkIcon.classList.remove("hidden");
+        copyLabel.textContent = "Copied!";
+        setTimeout(() => {
+          copyIcon.classList.remove("hidden");
+          checkIcon.classList.add("hidden");
+          copyLabel.textContent = "Copy";
+        }, 2000);
+      });
+    });
+  }
+</script>

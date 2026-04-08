@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 36" fill="none">
+  <defs>
+    <linearGradient id="a" x1="0" y1="0" x2="36" y2="36" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#7c3aed"/>
+      <stop offset="100%" stop-color="#db2777"/>
+    </linearGradient>
+    <linearGradient id="b" x1="50" y1="0" x2="192" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#7c3aed"/>
+      <stop offset="100%" stop-color="#db2777"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Icon mark -->
+  <rect x="3" y="3" width="30" height="13" rx="3" fill="url(#a)"/>
+  <rect x="3" y="20" width="13" height="13" rx="3" fill="url(#a)" opacity="0.75"/>
+  <rect x="20" y="20" width="13" height="13" rx="3" fill="url(#a)" opacity="0.45"/>
+
+  <!-- Wordmark — baseline at 29 centers 32px cap-height text in 36px viewBox -->
+  <text
+    x="50"
+    y="29"
+    font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+    font-size="32"
+    font-weight="700"
+    letter-spacing="-0.5"
+    fill="#030712"
+  >Block<tspan fill="url(#b)">UI</tspan></text>
+</svg>
