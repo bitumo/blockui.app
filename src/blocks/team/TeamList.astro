@@ -1,0 +1,74 @@
+---
+const members = [
+  {
+    name: "Ada Lovelace",
+    role: "Co-founder & CEO",
+    bio: "Pioneering the intersection of mathematics and engineering since day one.",
+    avatar: "AL",
+    color: "bg-violet-500",
+  },
+  {
+    name: "Alan Turing",
+    role: "Co-founder & CTO",
+    bio: "Building systems that think. Obsessed with elegant solutions to hard problems.",
+    avatar: "AT",
+    color: "bg-sky-500",
+  },
+  {
+    name: "Grace Hopper",
+    role: "Head of Engineering",
+    bio: "Compiler of ideas, debugger of impossible problems. First to find the bug.",
+    avatar: "GH",
+    color: "bg-emerald-500",
+  },
+  {
+    name: "Linus Torvalds",
+    role: "Lead Infrastructure",
+    bio: "Just for fun. Keeps everything running smoothly under the hood.",
+    avatar: "LT",
+    color: "bg-amber-500",
+  },
+  {
+    name: "Margaret Hamilton",
+    role: "Head of Product",
+    bio: "Software engineering isn't just a job — it's a discipline. Shipping carefully.",
+    avatar: "MH",
+    color: "bg-rose-500",
+  },
+  {
+    name: "Tim Berners-Lee",
+    role: "Head of Design",
+    bio: "Information wants to be beautiful. Designing for the open web.",
+    avatar: "TB",
+    color: "bg-fuchsia-500",
+  },
+];
+---
+
+<section class="bg-white px-6 py-24 lg:px-8">
+  <div class="mx-auto max-w-3xl">
+
+    <div class="mb-12">
+      <p class="mb-3 text-xs font-semibold uppercase tracking-widest text-violet-600">Team</p>
+      <h2 class="text-4xl font-extrabold tracking-tight text-gray-950">Meet the team.</h2>
+    </div>
+
+    <ul class="divide-y divide-gray-100">
+      {members.map(({ name, role, bio, avatar, color }) => (
+        <li class="flex items-start gap-5 py-6">
+          <div class={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl text-xs font-bold text-white ${color}`}>
+            {avatar}
+          </div>
+          <div>
+            <div class="flex items-center gap-3">
+              <p class="text-sm font-bold text-gray-950">{name}</p>
+              <span class="text-xs text-gray-400">{role}</span>
+            </div>
+            <p class="mt-1 text-sm leading-6 text-gray-500">{bio}</p>
+          </div>
+        </li>
+      ))}
+    </ul>
+
+  </div>
+</section>

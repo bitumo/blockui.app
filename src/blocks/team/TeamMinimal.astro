@@ -1,0 +1,33 @@
+---
+const members = [
+  { name: "Ada Lovelace",      role: "Co-founder & CEO",      avatar: "AL", color: "bg-violet-500" },
+  { name: "Alan Turing",       role: "Co-founder & CTO",      avatar: "AT", color: "bg-sky-500"    },
+  { name: "Grace Hopper",      role: "Head of Engineering",   avatar: "GH", color: "bg-emerald-500"},
+  { name: "Linus Torvalds",    role: "Lead Infrastructure",   avatar: "LT", color: "bg-amber-500"  },
+  { name: "Margaret Hamilton", role: "Head of Product",       avatar: "MH", color: "bg-rose-500"   },
+  { name: "Tim B. Lee",        role: "Head of Design",        avatar: "TL", color: "bg-fuchsia-500"},
+];
+---
+
+<section class="border-t border-gray-100 bg-white px-6 py-24 lg:px-8">
+  <div class="mx-auto max-w-5xl">
+
+    <div class="mb-12">
+      <p class="mb-2 text-xs font-semibold uppercase tracking-widest text-gray-400">Team</p>
+      <h2 class="text-3xl font-bold tracking-tight text-gray-950">Meet the team.</h2>
+    </div>
+
+    <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
+      {members.map(({ name, role, avatar, color }) => (
+        <div class="text-center">
+          <div class={`mx-auto mb-3 flex h-14 w-14 items-center justify-center rounded-2xl text-sm font-bold text-white ${color}`}>
+            {avatar}
+          </div>
+          <p class="text-sm font-semibold text-gray-950">{name}</p>
+          <p class="mt-0.5 text-xs text-gray-400">{role}</p>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>

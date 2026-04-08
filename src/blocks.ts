@@ -28,6 +28,15 @@ import IntegrationsMinimal from "./blocks/integrations/IntegrationsMinimal.astro
 import FaqAccordion from "./blocks/faq/FaqAccordion.astro";
 import FaqSplit from "./blocks/faq/FaqSplit.astro";
 import FaqMinimal from "./blocks/faq/FaqMinimal.astro";
+import TeamGrid from "./blocks/team/TeamGrid.astro";
+import TeamList from "./blocks/team/TeamList.astro";
+import TeamMinimal from "./blocks/team/TeamMinimal.astro";
+import LoginCentered from "./blocks/login/LoginCentered.astro";
+import LoginSplit from "./blocks/login/LoginSplit.astro";
+import LoginMinimal from "./blocks/login/LoginMinimal.astro";
+import HowToSteps from "./blocks/howto/HowToSteps.astro";
+import HowToAlternating from "./blocks/howto/HowToAlternating.astro";
+import HowToMinimal from "./blocks/howto/HowToMinimal.astro";
 
 export type Block = {
   description: string;
@@ -108,4 +117,19 @@ const faq: Block = {
   variants: [defineVariant(FaqAccordion), defineVariant(FaqSplit), defineVariant(FaqMinimal)],
 };
 
-export const blocks: Record<string, Block> = { hero, features, pricing, cta, footer, testimonials, logocloud, codedemo, contact, integrations, faq };
+const team: Block = {
+  description: "Team member showcases with avatars, roles, and bios.",
+  variants: [defineVariant(TeamGrid), defineVariant(TeamList), defineVariant(TeamMinimal)],
+};
+
+const login: Block = {
+  description: "Authentication forms for signing in with email, password, and social providers.",
+  variants: [defineVariant(LoginCentered), defineVariant(LoginSplit), defineVariant(LoginMinimal)],
+};
+
+const howto: Block = {
+  description: "Step-by-step process sections explaining how a product or workflow works.",
+  variants: [defineVariant(HowToSteps), defineVariant(HowToAlternating), defineVariant(HowToMinimal)],
+};
+
+export const blocks: Record<string, Block> = { hero, features, pricing, cta, footer, testimonials, logocloud, codedemo, contact, integrations, faq, team, login, howto };

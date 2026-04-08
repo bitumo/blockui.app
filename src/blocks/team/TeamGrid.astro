@@ -1,0 +1,75 @@
+---
+const members = [
+  {
+    name: "Ada Lovelace",
+    role: "Co-founder & CEO",
+    bio: "Pioneering the intersection of mathematics and engineering since day one.",
+    avatar: "AL",
+    color: "bg-violet-500",
+  },
+  {
+    name: "Alan Turing",
+    role: "Co-founder & CTO",
+    bio: "Building systems that think. Obsessed with elegant solutions to hard problems.",
+    avatar: "AT",
+    color: "bg-sky-500",
+  },
+  {
+    name: "Grace Hopper",
+    role: "Head of Engineering",
+    bio: "Compiler of ideas, debugger of impossible problems. First to find the bug.",
+    avatar: "GH",
+    color: "bg-emerald-500",
+  },
+  {
+    name: "Linus Torvalds",
+    role: "Lead Infrastructure",
+    bio: "Just for fun. Keeps everything running smoothly under the hood.",
+    avatar: "LT",
+    color: "bg-amber-500",
+  },
+  {
+    name: "Margaret Hamilton",
+    role: "Head of Product",
+    bio: "Software engineering isn't just a job — it's a discipline. Shipping carefully.",
+    avatar: "MH",
+    color: "bg-rose-500",
+  },
+  {
+    name: "Tim Berners-Lee",
+    role: "Head of Design",
+    bio: "Information wants to be beautiful. Designing for the open web.",
+    avatar: "TB",
+    color: "bg-fuchsia-500",
+  },
+];
+---
+
+<section class="bg-white px-6 py-24 lg:px-8">
+  <div class="mx-auto max-w-5xl">
+
+    <div class="mb-14 max-w-xl">
+      <p class="mb-3 text-xs font-semibold uppercase tracking-widest text-violet-600">Team</p>
+      <h2 class="text-4xl font-extrabold tracking-tight text-gray-950 sm:text-5xl">
+        Meet the team.
+      </h2>
+      <p class="mt-4 text-base leading-7 text-gray-500">
+        A small, focused team building tools that developers actually want to use.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {members.map(({ name, role, bio, avatar, color }) => (
+        <div class="rounded-2xl border border-gray-100 bg-gray-50 p-6">
+          <div class={`mb-4 flex h-12 w-12 items-center justify-center rounded-2xl text-sm font-bold text-white ${color}`}>
+            {avatar}
+          </div>
+          <p class="text-base font-bold text-gray-950">{name}</p>
+          <p class="mb-3 text-sm text-violet-600">{role}</p>
+          <p class="text-sm leading-6 text-gray-500">{bio}</p>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>

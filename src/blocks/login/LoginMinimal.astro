@@ -1,0 +1,54 @@
+---
+---
+
+<section class="flex min-h-svh items-center justify-center bg-white px-6">
+  <div class="w-full max-w-xs">
+
+    <div class="mb-10">
+      <h1 class="text-2xl font-bold tracking-tight text-gray-950">Sign in</h1>
+      <p class="mt-1 text-sm text-gray-400">Enter your credentials to continue.</p>
+    </div>
+
+    <form class="space-y-5">
+      <div>
+        <label for="email" class="mb-1.5 block text-xs font-medium text-gray-500">Email</label>
+        <input
+          id="email"
+          type="email"
+          name="email"
+          autocomplete="email"
+          required
+          class="w-full border-b border-gray-200 bg-transparent pb-2 text-sm text-gray-950 outline-none transition placeholder:text-gray-300 focus:border-gray-950"
+          placeholder="ada@example.com"
+        />
+      </div>
+      <div>
+        <div class="mb-1.5 flex items-center justify-between">
+          <label for="password" class="text-xs font-medium text-gray-500">Password</label>
+          <a href="#" class="text-xs text-gray-400 transition hover:text-gray-600">Forgot?</a>
+        </div>
+        <input
+          id="password"
+          type="password"
+          name="password"
+          autocomplete="current-password"
+          required
+          class="w-full border-b border-gray-200 bg-transparent pb-2 text-sm text-gray-950 outline-none transition placeholder:text-gray-300 focus:border-gray-950"
+          placeholder="••••••••"
+        />
+      </div>
+      <button
+        type="submit"
+        class="w-full rounded-full bg-gray-950 py-2.5 text-sm font-semibold text-white transition hover:bg-gray-800"
+      >
+        Sign in →
+      </button>
+    </form>
+
+    <p class="mt-8 text-center text-xs text-gray-400">
+      No account?
+      <a href="#" class="font-semibold text-gray-700 transition hover:text-gray-950">Sign up</a>
+    </p>
+
+  </div>
+</section>

@@ -108,6 +108,26 @@ const categories = Object.entries(blocks);
       }
     </style>
 
+    <section class="border-t border-gray-100 bg-gray-950 px-6 py-14 lg:px-8">
+      <div class="mx-auto max-w-5xl">
+        <div class="grid grid-cols-2 gap-8 sm:grid-cols-4">
+          {
+            [
+              { value: "2,400+", label: "Developers using BlockUI" },
+              { value: "12+", label: "Block categories" },
+              { value: "40+", label: "Variants available" },
+              { value: "100%", label: "Free and open-source" },
+            ].map(({ value, label }) => (
+              <div>
+                <p class="text-3xl font-extrabold tracking-tight text-white">{value}</p>
+                <p class="mt-1 text-sm text-gray-400">{label}</p>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
     <section class="relative border-t border-gray-100 px-6 py-16 lg:px-8">
       <div class="mx-auto max-w-5xl">
         <div class="mb-6 max-w-lg">
@@ -160,27 +180,7 @@ const categories = Object.entries(blocks);
       </div>
     </section>
 
-    <section class="border-t border-gray-100 bg-gray-950 px-6 py-14 lg:px-8">
-      <div class="mx-auto max-w-5xl">
-        <div class="grid grid-cols-2 gap-8 sm:grid-cols-4">
-          {
-            [
-              { value: "2,400+", label: "Developers using BlockUI" },
-              { value: "12+", label: "Block categories" },
-              { value: "40+", label: "Variants available" },
-              { value: "100%", label: "Free and open-source" },
-            ].map(({ value, label }) => (
-              <div>
-                <p class="text-3xl font-extrabold tracking-tight text-white">{value}</p>
-                <p class="mt-1 text-sm text-gray-400">{label}</p>
-              </div>
-            ))
-          }
-        </div>
-      </div>
-    </section>
-
-    <section id="blocks" class="border-t border-gray-100 px-6 py-14 lg:px-8">
+    <section id="blocks" class="border-t border-gray-100 bg-gray-50 px-6 py-14 lg:px-8">
       <div class="mx-auto max-w-5xl">
         <div class="mb-8 flex items-baseline justify-between">
           <h2 class="text-2xl font-bold tracking-tight text-gray-950">Browse blocks</h2>
@@ -219,7 +219,7 @@ const categories = Object.entries(blocks);
       </div>
     </section>
 
-    <section id="testimonials" class="border-t border-gray-100 bg-gray-50 px-6 py-14 lg:px-8">
+    <section id="testimonials" class="border-t border-gray-100 px-6 py-14 lg:px-8">
       <div class="mx-auto max-w-5xl">
         <div class="mb-8">
           <h2 class="text-2xl font-bold tracking-tight text-gray-950">Loved by developers</h2>

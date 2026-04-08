@@ -1,0 +1,50 @@
+---
+const steps = [
+  {
+    title: "Browse the gallery",
+    description: "Explore blocks by category — Hero, Features, Pricing, CTA, and more. Each category has multiple variants with distinct visual styles.",
+  },
+  {
+    title: "Preview and inspect",
+    description: "Switch between the live preview and the Code tab. Resize the preview to any breakpoint using the drag handle or preset buttons.",
+  },
+  {
+    title: "Copy the source",
+    description: "Click Copy to grab the Prettier-formatted HTML. The code is framework-agnostic — use it in any Astro, React, or plain HTML project.",
+  },
+  {
+    title: "Paste and customise",
+    description: "Drop the block into your project. Every class is plain Tailwind — swap colors, adjust spacing, or restructure the markup however you like.",
+  },
+];
+---
+
+<section class="bg-white px-6 py-24 lg:px-8">
+  <div class="mx-auto max-w-5xl">
+
+    <div class="mb-16 max-w-xl">
+      <p class="mb-3 text-xs font-semibold uppercase tracking-widest text-violet-600">How it works</p>
+      <h2 class="text-4xl font-extrabold tracking-tight text-gray-950 sm:text-5xl">
+        Up and running in minutes.
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
+      {steps.map(({ title, description }, i) => (
+        <div class="relative">
+          <div class="mb-5 flex items-center gap-3">
+            <div class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-violet-600 text-xs font-bold text-white">
+              {i + 1}
+            </div>
+            {i < steps.length - 1 && (
+              <div class="hidden h-px flex-1 border-t border-dashed border-gray-200 lg:block"></div>
+            )}
+          </div>
+          <h3 class="mb-2 text-base font-bold text-gray-950">{title}</h3>
+          <p class="text-sm leading-6 text-gray-500">{description}</p>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>
