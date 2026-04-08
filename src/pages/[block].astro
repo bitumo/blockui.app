@@ -17,11 +17,11 @@ const blockVariants: BlockVariant[] = block?.variants || [];
 <Base title={`BlockUI — ${blockName}`}>
   <main class="mx-auto max-w-6xl px-6 py-16 lg:px-8">
     <div class="mb-12">
-      <h1 class="text-3xl font-extrabold capitalize tracking-tight text-gray-950">
+      <h1 class="text-3xl font-extrabold capitalize tracking-tight text-gray-950 dark:text-white">
         {blockName}
       </h1>
       {block?.description && (
-        <p class="mt-2 text-sm text-gray-500">{block.description}</p>
+        <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">{block.description}</p>
       )}
     </div>
 

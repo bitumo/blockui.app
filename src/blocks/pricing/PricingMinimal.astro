@@ -43,40 +43,40 @@ const tiers = [
 ];
 ---
 
-<section class="bg-white px-6 py-24 lg:px-8">
+<section class="bg-white px-6 py-24 dark:bg-gray-950 lg:px-8">
   <div class="mx-auto max-w-3xl">
 
     <div class="mb-14">
-      <p class="mb-2 text-xs font-semibold uppercase tracking-widest text-gray-400">Pricing</p>
-      <h2 class="text-3xl font-bold tracking-tight text-gray-950">
+      <p class="mb-2 text-xs font-semibold uppercase tracking-widest text-gray-400 dark:text-gray-500">Pricing</p>
+      <h2 class="text-3xl font-bold tracking-tight text-gray-950 dark:text-white">
         Simple, honest pricing.
       </h2>
     </div>
 
-    <div class="divide-y divide-gray-100">
+    <div class="divide-y divide-gray-100 dark:divide-gray-800">
       {tiers.map(({ name, price, period, description, cta, ctaHref, featured, features }) => (
         <div class="grid grid-cols-1 gap-6 py-8 sm:grid-cols-3 sm:items-start">
 
           <div>
             <div class="flex items-center gap-2">
-              <p class="text-sm font-semibold text-gray-950">{name}</p>
+              <p class="text-sm font-semibold text-gray-950 dark:text-white">{name}</p>
               {featured && (
-                <span class="rounded-full bg-violet-50 px-2 py-0.5 text-xs font-medium text-violet-700">
+                <span class="rounded-full bg-violet-50 px-2 py-0.5 text-xs font-medium text-violet-700 dark:bg-violet-950 dark:text-violet-400">
                   Popular
                 </span>
               )}
             </div>
             <div class="mt-1 flex items-baseline gap-1">
-              <span class="text-2xl font-bold tracking-tight text-gray-950">{price}</span>
+              <span class="text-2xl font-bold tracking-tight text-gray-950 dark:text-white">{price}</span>
               {period && <span class="text-xs text-gray-400">{period}</span>}
             </div>
-            <p class="mt-1 text-xs leading-5 text-gray-400">{description}</p>
+            <p class="mt-1 text-xs leading-5 text-gray-400 dark:text-gray-500">{description}</p>
           </div>
 
           <ul class="space-y-2">
             {features.map((f) => (
-              <li class="flex items-center gap-2 text-sm text-gray-600">
-                <span class="h-1 w-1 shrink-0 rounded-full bg-gray-300"></span>
+              <li class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300">
+                <span class="h-1 w-1 shrink-0 rounded-full bg-gray-300 dark:bg-gray-600"></span>
                 {f}
               </li>
             ))}
@@ -87,8 +87,8 @@ const tiers = [
               href={ctaHref}
               class={`inline-block rounded-lg px-4 py-2 text-sm font-semibold transition ${
                 featured
-                  ? "bg-gray-950 text-white hover:bg-gray-800"
-                  : "text-gray-700 underline underline-offset-2 hover:text-gray-950"
+                  ? "bg-gray-950 text-white hover:bg-gray-800 dark:bg-white dark:text-gray-950 dark:hover:bg-gray-100"
+                  : "text-gray-700 underline underline-offset-2 hover:text-gray-950 dark:text-gray-400 dark:hover:text-white"
               }`}
             >
               {cta}

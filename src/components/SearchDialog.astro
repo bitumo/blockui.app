@@ -16,7 +16,7 @@ const { blocks } = Astro.props;
 <button
   id="search-trigger"
   aria-label="Search blocks"
-  class="flex items-center gap-2 rounded-full border border-gray-200 bg-gray-50 px-3 py-1.5 text-xs text-gray-400 transition hover:border-gray-300 hover:text-gray-600"
+  class="flex items-center gap-2 rounded-full border border-gray-200 bg-gray-50 px-3 py-1.5 text-xs text-gray-400 transition hover:border-gray-300 hover:text-gray-600 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-500 dark:hover:border-gray-600 dark:hover:text-gray-400"
 >
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -32,7 +32,7 @@ const { blocks } = Astro.props;
   </svg>
   <span>Search blocks</span>
   <kbd
-    class="hidden rounded bg-gray-200 px-1.5 py-0.5 font-mono text-[10px] text-gray-400 sm:inline"
+    class="hidden rounded bg-gray-200 px-1.5 py-0.5 font-mono text-[10px] text-gray-400 sm:inline dark:bg-gray-800 dark:text-gray-500"
     >⌘K</kbd
   >
 </button>
@@ -50,16 +50,18 @@ const { blocks } = Astro.props;
   <div
     id="search-backdrop"
     style="position:absolute;inset:0;background:rgba(3,7,18,0.5);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)"
-  ></div>
+  >
+  </div>
 
   <!-- Panel wrapper -->
   <div class="relative z-10 flex h-full items-start justify-center px-4 pt-24">
     <!-- Panel -->
     <div
-      class="w-full max-w-lg overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-2xl"
+      id="search-panel"
+      class="w-full max-w-lg overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-2xl dark:border-gray-800 dark:bg-gray-950"
     >
       <!-- Input -->
-      <div class="flex items-center gap-3 border-b border-gray-100 px-4 py-3.5">
+      <div class="flex items-center gap-3 border-b border-gray-100 px-4 py-3.5 dark:border-gray-800">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 16 16"
@@ -77,11 +79,11 @@ const { blocks } = Astro.props;
           type="text"
           placeholder="Search blocks…"
           autocomplete="off"
-          class="flex-1 bg-transparent text-sm text-gray-950 outline-none placeholder:text-gray-400"
+          class="flex-1 bg-transparent text-sm text-gray-950 outline-none placeholder:text-gray-400 dark:text-white dark:placeholder:text-gray-600"
         />
         <button
           id="search-clear"
-          class="hidden text-gray-400 transition hover:text-gray-600"
+          class="hidden text-gray-400 transition hover:text-gray-600 dark:hover:text-gray-300"
           aria-label="Clear"
         >
           <svg
@@ -102,21 +104,26 @@ const { blocks } = Astro.props;
       <ul id="search-results" class="max-h-80 overflow-y-auto py-2"></ul>
 
       <!-- Footer -->
-      <div class="flex items-center justify-between border-t border-gray-100 px-4 py-2.5">
+      <div class="flex items-center justify-between border-t border-gray-100 px-4 py-2.5 dark:border-gray-800">
         <div class="flex items-center gap-3 text-xs text-gray-400">
           <span class="flex items-center gap-1">
-            <kbd class="rounded bg-gray-100 px-1.5 py-0.5 font-mono text-[10px]">↑</kbd>
-            <kbd class="rounded bg-gray-100 px-1.5 py-0.5 font-mono text-[10px]">↓</kbd>
+            <kbd class="rounded bg-gray-100 px-1.5 py-0.5 font-mono text-[10px] dark:bg-gray-800 dark:text-gray-400">↑</kbd>
+            <kbd class="rounded bg-gray-100 px-1.5 py-0.5 font-mono text-[10px] dark:bg-gray-800 dark:text-gray-400">↓</kbd>
             to navigate
           </span>
           <span class="flex items-center gap-1">
-            <kbd class="rounded bg-gray-100 px-1.5 py-0.5 font-mono text-[10px]">↵</kbd>
+            <kbd class="rounded bg-gray-100 px-1.5 py-0.5 font-mono text-[10px] dark:bg-gray-800 dark:text-gray-400">↵</kbd>
             to select
           </span>
+          <span class="text-xs text-gray-400">
+            <kbd class="rounded bg-gray-100 px-1.5 py-0.5 font-mono text-[10px] dark:bg-gray-800 dark:text-gray-400">Esc</kbd> to close
+          </span>
         </div>
-        <span class="text-xs text-gray-400">
-          <kbd class="rounded bg-gray-100 px-1.5 py-0.5 font-mono text-[10px]">Esc</kbd> to close
-        </span>
+        <div class="flex items-center">
+          <a href="/blocks" class="text-xs text-violet-600 transition hover:text-violet-700 dark:text-violet-400 dark:hover:text-violet-300"
+            >Browse all blocks →</a
+          >
+        </div>
       </div>
     </div>
   </div>
@@ -159,7 +166,7 @@ const { blocks } = Astro.props;
       if (filtered.length === 0) {
         results.innerHTML = `
         <li class="px-4 py-8 text-center text-sm text-gray-400">
-          No blocks found for "<span class="font-medium text-gray-600">${query}</span>"
+          No blocks found for "<span class="font-medium text-gray-600 dark:text-gray-300">${query}</span>"
         </li>`;
         return;
       }
@@ -168,12 +175,12 @@ const { blocks } = Astro.props;
         .map(
           (b) => `
         <li>
-          <a href="/${b.name}" class="flex items-center justify-between px-4 py-3 transition hover:bg-gray-50">
+          <a href="/${b.name}" class="flex items-center justify-between px-4 py-3 transition hover:bg-gray-50 dark:hover:bg-gray-900">
             <div>
-              <p class="text-sm font-semibold capitalize text-gray-950">${b.name}</p>
+              <p class="text-sm font-semibold capitalize text-gray-950 dark:text-white">${b.name}</p>
               <p class="mt-0.5 text-xs text-gray-400">${b.description}</p>
             </div>
-            <span class="ml-4 shrink-0 rounded-full bg-gray-100 px-2 py-0.5 text-xs font-medium text-gray-400">
+            <span class="ml-4 shrink-0 rounded-full bg-gray-100 px-2 py-0.5 text-xs font-medium text-gray-400 dark:bg-gray-800">
               ${b.variants.length} variant${b.variants.length !== 1 ? "s" : ""}
             </span>
           </a>
@@ -194,10 +201,10 @@ const { blocks } = Astro.props;
       activeIndex = Math.max(-1, Math.min(index, links.length - 1));
       links.forEach((a, i) => {
         if (i === activeIndex) {
-          a.classList.add("bg-gray-50");
+          a.classList.add("bg-gray-50", "dark:bg-gray-900");
           a.scrollIntoView({ block: "nearest" });
         } else {
-          a.classList.remove("bg-gray-50");
+          a.classList.remove("bg-gray-50", "dark:bg-gray-900");
         }
       });
     }
@@ -205,8 +212,12 @@ const { blocks } = Astro.props;
     // Initial render
     render("");
 
+    const panel = document.getElementById("search-panel");
+
     trigger.addEventListener("click", open);
-    backdrop.addEventListener("click", close);
+    dialog.addEventListener("click", (e) => {
+      if (!panel.contains(e.target)) close();
+    });
 
     input.addEventListener("input", () => {
       const q = input.value;

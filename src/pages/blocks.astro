@@ -1,0 +1,117 @@
+---
+import Base from "../layouts/Base.astro";
+import { blocks } from "../blocks";
+
+const categories = Object.entries(blocks);
+const totalVariants = categories.reduce((sum, [, b]) => sum + b.variants.length, 0);
+---
+
+<Base title="BlockUI — All Blocks">
+  <main class="mx-auto max-w-5xl px-6 py-16 lg:px-8">
+
+    <div class="mb-10">
+      <h1 class="text-3xl font-extrabold tracking-tight text-gray-950 dark:text-white">All blocks</h1>
+      <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">
+        {categories.length} categories &middot; {totalVariants} variants
+      </p>
+    </div>
+
+    <!-- Search -->
+    <div class="relative mb-10">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor"
+        class="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400"
+        aria-hidden="true">
+        <path fill-rule="evenodd" d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z" clip-rule="evenodd" />
+      </svg>
+      <input
+        id="blocks-search"
+        type="text"
+        placeholder="Search blocks and variants…"
+        autocomplete="off"
+        class="w-full rounded-xl border border-gray-200 bg-white py-2.5 pr-4 pl-11 text-sm text-gray-950 shadow-xs outline-none transition placeholder:text-gray-400 focus:border-violet-400 focus:ring-2 focus:ring-violet-100 dark:border-gray-700 dark:bg-gray-900 dark:text-white dark:placeholder:text-gray-500 dark:focus:border-violet-500 dark:focus:ring-violet-900/30"
+      />
+    </div>
+
+    <div id="blocks-empty" style="display:none" class="py-16 text-center text-sm text-gray-400">
+      No blocks found. Try a different search term.
+    </div>
+
+    <div id="blocks-list" class="space-y-14">
+      {categories.map(([name, block]) => (
+        <div data-category={name}>
+          <!-- Category header -->
+          <div class="mb-5 flex items-center justify-between">
+            <div>
+              <h2 class="text-lg font-bold capitalize tracking-tight text-gray-950 dark:text-white">{name}</h2>
+              <p class="mt-0.5 text-sm text-gray-400">{block.description}</p>
+            </div>
+            <a
+              href={`/${name}`}
+              class="shrink-0 text-xs font-semibold text-violet-600 transition hover:text-violet-700"
+            >
+              View all →
+            </a>
+          </div>
+
+          <!-- Variant list -->
+          <div class="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {block.variants.map(({ slug }) => {
+              const label = slug
+                .replace(`${name}-`, "")
+                .replace(/-/g, " ")
+                .replace(/\b\w/g, (c) => c.toUpperCase());
+              return (
+                <a
+                  href={`/preview/${slug}`}
+                  data-variant={slug}
+                  class="group flex items-center justify-between rounded-xl border border-gray-100 bg-white px-4 py-3 transition hover:border-violet-200 hover:shadow-sm dark:border-gray-800 dark:bg-gray-900 dark:hover:border-violet-800"
+                >
+                  <div class="flex items-center gap-3">
+                    <span class="h-2 w-2 shrink-0 rounded-full bg-gray-200 transition group-hover:bg-violet-400 dark:bg-gray-700"></span>
+                    <span class="text-sm font-medium text-gray-700 dark:text-gray-300">{label}</span>
+                  </div>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor"
+                    class="h-3.5 w-3.5 shrink-0 text-gray-300 transition group-hover:translate-x-0.5 group-hover:text-violet-500"
+                    aria-hidden="true">
+                    <path fill-rule="evenodd" d="M2 8a.75.75 0 0 1 .75-.75h8.69L8.22 4.03a.75.75 0 0 1 1.06-1.06l4.5 4.5a.75.75 0 0 1 0 1.06l-4.5 4.5a.75.75 0 0 1-1.06-1.06l3.22-3.22H2.75A.75.75 0 0 1 2 8Z" clip-rule="evenodd" />
+                  </svg>
+                </a>
+              );
+            })}
+          </div>
+        </div>
+      ))}
+    </div>
+
+  </main>
+</Base>
+
+<script>
+  const input = document.getElementById("blocks-search") as HTMLInputElement;
+  const categories = document.querySelectorAll<HTMLElement>("[data-category]");
+  const variants   = document.querySelectorAll<HTMLElement>("[data-variant]");
+  const emptyState = document.getElementById("blocks-empty");
+
+  input.addEventListener("input", () => {
+    const q = input.value.trim().toLowerCase();
+
+    let anyVisible = false;
+
+    categories.forEach((cat) => {
+      const catName = cat.dataset.category!.toLowerCase();
+      const catVariants = cat.querySelectorAll<HTMLElement>("[data-variant]");
+      let catHasVisible = false;
+
+      catVariants.forEach((v) => {
+        const matches = !q || v.dataset.variant!.toLowerCase().includes(q) || catName.includes(q);
+        v.style.display = matches ? "" : "none";
+        if (matches) catHasVisible = true;
+      });
+
+      cat.style.display = catHasVisible ? "" : "none";
+      if (catHasVisible) anyVisible = true;
+    });
+
+    if (emptyState) emptyState.style.display = anyVisible ? "none" : "";
+  });
+</script>
